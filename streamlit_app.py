@@ -18,18 +18,14 @@ Here's some information about us:
 
 st.markdown(info_section, unsafe_allow_html=True)
 
-if st.button("Submit"):
-    name = st.text_input("Name")
-    email = st.email_input("Email")
-    message = st.text_input("Message")
-else:
-    name = ""
-    email = ""
-    message = ""
+with st.form("my_form"):
+   st.write("Inside the form")
+   slider_val = st.slider("Form slider")
+   checkbox_val = st.checkbox("Form checkbox")
 
-st.markdown("""
-## Submit Your Message
-Your Name: {}
-Your Email: {}
-Your Message: {}
-""".format(name, email, message))
+   # Every form must have a submit button.
+   submitted = st.form_submit_button("Submit")
+   if submitted:
+       st.write("slider", slider_val, "checkbox", checkbox_val)
+
+st.write("Outside the form")
